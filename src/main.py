@@ -7,8 +7,10 @@ from flask import Flask, send_from_directory
 from flask_cors import CORS
 from src.models.user import db
 from src.models.configuracoes import Categoria, Subcategoria
+from src.models.prospeccoes import Prospeccao
 from src.routes.user import user_bp
 from src.routes.configuracoes import configuracoes_bp
+from src.routes.prospeccoes import prospeccoes_bp
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = 'asdf#FGSgvasgf$5$WGT'
@@ -18,6 +20,7 @@ CORS(app)
 
 app.register_blueprint(user_bp, url_prefix='/api')
 app.register_blueprint(configuracoes_bp, url_prefix='/api')
+app.register_blueprint(prospeccoes_bp)
 
 # uncomment if you need to use database
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://crmlogicadb_owner:npg_toClPehVNJ97@ep-wandering-bread-a8al5awo-pooler.eastus2.azure.neon.tech/crmlogicadb?sslmode=require"
